@@ -24,19 +24,20 @@ kotlin {
 
     sourceSets["commonMain"].dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
-        implementation("io.ktor:ktor-client-core:1.2.2")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.0")
+        implementation("io.ktor:ktor-client-core:1.0.1")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     }
 
     sourceSets["androidMain"].dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib")
-        implementation ("io.ktor:ktor-client-android:1.2.2")
-        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0")
+        implementation ("io.ktor:ktor-client-android:1.0.1")
+        implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     }
 
     sourceSets["iosMain"].dependencies {
-        implementation("io.ktor:ktor-client-ios:1.2.2")
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.0")
+        implementation("io.ktor:ktor-client-ios:1.0.1")
+        implementation("io.ktor:ktor-client-core-ios:1.0.1")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
     }
 }
 

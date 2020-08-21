@@ -1,6 +1,6 @@
+enableFeaturePreview('GRADLE_METADATA')
 rootProject.name = 'CardsAgainstHumanity'
+
 
 include ':app'
 include ':SharedCode'
-
-enableFeaturePreview('GRADLE_METADATA')

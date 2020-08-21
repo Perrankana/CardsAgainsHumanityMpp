@@ -1,4 +1,4 @@
-package com.jetbrains.handson.mpp.mobile
+package com.pandiandcode.mpp.cardsagainsthumanity
 
 import platform.UIKit.UIDevice
 
