@@ -1,6 +1,6 @@
 package com.pandiandcode.mpp.cardsagainsthumanity.presenter
 
-import com.pandiandcode.mpp.cardsagainsthumanity.data.api.RecipeApi
+import com.pandiandcode.mpp.cardsagainsthumanity.data.api.CahApi
 import com.pandiandcode.mpp.cardsagainsthumanity.dispatchers.Background
 import com.pandiandcode.mpp.cardsagainsthumanity.dispatchers.Main
 import com.pandiandcode.mpp.cardsagainsthumanity.repositories.RecipeRepo
@@ -17,7 +17,7 @@ class RecipePresenter {
         this.getRecipe = getRecipe
     }
     constructor(){
-        this.getRecipe = DoGetRecipe(RecipeRepo(RecipeApi()))
+        this.getRecipe = DoGetRecipe(RecipeRepo(CahApi()))
     }
 
     var view: View? = null
