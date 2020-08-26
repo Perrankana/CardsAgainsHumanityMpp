@@ -11,3 +11,6 @@ data class NewPlayingCardsApiData(val cards: List<CardApiData>)
 
 @Serializable
 data class CardApiData(val description: String)
+
+@Serializable
+data class WhiteCardApiData(val id: Int, val description: String)

@@ -4,7 +4,7 @@ import com.pandiandcode.mpp.cardsagainsthumanity.domain.repositories.PlayingCard
 
 class DoGetPlayingCards(private val playingCardsRepository: PlayingCardsRepository) {
     suspend operator fun invoke(): String {
-        return playingCardsRepository.getRecipe().map {
+        return playingCardsRepository.getPlayingCards().map {
             it._id
         }.toString()
     }

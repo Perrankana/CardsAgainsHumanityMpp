@@ -6,21 +6,19 @@ import com.pandiandcode.mpp.cardsagainsthumanity.data.datasource.PlayingCardsDat
 
 
 class PlayingCardsRepository {
-    private var api: PlayingCardsDataSource
+    private var dataSource: PlayingCardsDataSource
 
     constructor(api: PlayingCardsDataSource) {
-        this.api = api
+        this.dataSource = api
     }
 
     constructor(){
-        this.api = PlayingCardsDataSourceImpl()
+        this.dataSource = PlayingCardsDataSourceImpl()
     }
 
-    suspend fun getRecipe() : List<PlayingCardsApiData> {
-        return api.getPlayingCards().fold({
-            it
-        },{
-            emptyList()
-        })
-    }
+    suspend fun getPlayingCards() : List<PlayingCardsApiData> = dataSource.getPlayingCards().fold({
+        it
+    },{
+        emptyList()
+    })
 }
