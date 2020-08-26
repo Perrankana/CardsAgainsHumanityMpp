@@ -11,7 +11,7 @@ class ViewController: UIViewController, View {
         label.textAlignment = .center
         label.font = label.font.withSize(25)
         
-        let presenter = RecipePresenter()
+        let presenter = MainGamePresenter()
         presenter.view = self
         
         presenter.start()

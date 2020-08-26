@@ -1,17 +1,26 @@
 package com.pandiandcode.mpp.cardsagainsthumanity.data.api
 
 
+import com.pandiandcode.mpp.cardsagainsthumanity.data.api.apidata.NewPlayingCardsApiData
+import com.pandiandcode.mpp.cardsagainsthumanity.data.api.apidata.PlayingCardsApiData
 import io.ktor.client.*
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import kotlinx.serialization.Serializable
 
-class CahApi {
+interface CahApi {
+    suspend fun getPlayingCards(): List<PlayingCardsApiData>
+
+    suspend fun putPlayingCards(playingCards: NewPlayingCardsApiData)
+
+    suspend fun deleteCard(id: String)
+}
+
+class CahApiImpl : CahApi {
     private val client = HttpClient {
-        install(JsonFeature){
+        install(JsonFeature) {
             serializer = KotlinxSerializer()
         }
         defaultRequest {
@@ -21,26 +30,26 @@ class CahApi {
 
     private var address = Url(BASE_URL)
 
-    suspend fun getRecipe(): List<PlayingCardsApiData> {
-
-        return client.get {
-            url("$address/playingcards")
-        }
-    }
-
     private companion object {
         const val BASE_URL = "https://carsagainstperra-d8ea.restdb.io/rest/"
         const val API_KEY = "x-apikey"
         const val API_KEY_VALUE = "0ac361fd985eea54cd349b5bcd0640a7890ba"
     }
+
+    override suspend fun getPlayingCards(): List<PlayingCardsApiData> =
+        client.get {
+            url("$address/playingcards")
+        }
+
+    override suspend fun putPlayingCards(playingCards: NewPlayingCardsApiData) =
+        client.put<Unit> {
+            url("$address/playingcards")
+            body = playingCards
+        }
+
+    override suspend fun deleteCard(id: String) =
+        client.delete<Unit> {
+            url("$address/playingcards/id=$id")
+        }
 }
-
-@Serializable
-data class PlayingCardsApiData(val _id: String, val cards: List<CardApiData>)
-
-@Serializable
-data class NewPlayingCardsApiData(val cards: List<CardApiData>)
-
-@Serializable
-data class CardApiData(val description: String)
 
