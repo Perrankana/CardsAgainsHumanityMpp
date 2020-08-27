@@ -2,8 +2,6 @@ package com.pandiandcode.mpp.cardsagainsthumanity.presenter
 
 import com.pandiandcode.mpp.cardsagainsthumanity.dispatchers.Background
 import com.pandiandcode.mpp.cardsagainsthumanity.dispatchers.Main
-import com.pandiandcode.mpp.cardsagainsthumanity.domain.data.Game
-import com.pandiandcode.mpp.cardsagainsthumanity.domain.data.Player
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.repositories.BlackDeckRepository
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.repositories.PlayingCardsRepository
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.repositories.WhiteDeckRepository
@@ -11,9 +9,8 @@ import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoGetBlackDeck
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoGetPlayingCards
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoGetWhiteDeck
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoStartGame
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 class MainGamePresenter {
 
@@ -43,15 +40,16 @@ class MainGamePresenter {
 
     var view: View? = null
 
-    fun start() {
+    fun start(gameName: String, playerName: String) {
         GlobalScope.apply {
-            launch(Background) {
-                val json = startGame(
-                    "Hola Juego"
-                )
-                withContext(Main) {
-                    view?.showState(json.toString())
-                }
+            launch(Main) {
+                withContext(Background){
+                    startGame(gameName, playerName)
+                }.fold({
+                    view?.showState(it.toString())
+                },{
+                    view?.showState(it.stackTraceToString())
+                })
             }
         }
     }

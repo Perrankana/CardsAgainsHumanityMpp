@@ -14,5 +14,6 @@ fun List<PlayersApiData>.toDomain(): List<Player> = map {
 fun PlayersApiData.toDomain(): Player = Player(
     name = name,
     score = score,
+    host = host,
     _id = _id
 )

@@ -14,7 +14,7 @@ class ViewController: UIViewController, View {
         let presenter = MainGamePresenter()
         presenter.view = self
         
-        presenter.start()
+        presenter.start(gameName: "Otra Ios", playerName: "Tom")
     }
 
     override func didReceiveMemoryWarning() {

@@ -19,5 +19,6 @@ fun List<Player>.toData(): List<PlayersApiData> = map {
 fun Player.toData(): PlayersApiData = PlayersApiData(
     name = name,
     score = score,
+    host = host,
     _id = _id
 )

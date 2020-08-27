@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), View {
 
         presenterMain = MainGamePresenter()
         presenterMain.view = this
-        presenterMain.start()
+        presenterMain.start("Hola Juego", "Rocío")
     }
 
     override fun showState(json: String) {
