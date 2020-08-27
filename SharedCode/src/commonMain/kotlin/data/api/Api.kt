@@ -13,6 +13,7 @@ abstract class Api {
             serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
                 this.ignoreUnknownKeys = true
             })
+
         }
         defaultRequest {
             header(API_KEY, API_KEY_VALUE)

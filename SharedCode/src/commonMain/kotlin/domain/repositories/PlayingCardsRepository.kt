@@ -5,17 +5,7 @@ import com.pandiandcode.mpp.cardsagainsthumanity.data.datasource.PlayingCardsDat
 import com.pandiandcode.mpp.cardsagainsthumanity.data.datasource.PlayingCardsDataSourceImpl
 
 
-class PlayingCardsRepository {
-    private var dataSource: PlayingCardsDataSource
-
-    constructor(api: PlayingCardsDataSource) {
-        this.dataSource = api
-    }
-
-    constructor(){
-        this.dataSource = PlayingCardsDataSourceImpl()
-    }
-
+class PlayingCardsRepository(private val dataSource: PlayingCardsDataSource = PlayingCardsDataSourceImpl()) {
     suspend fun getPlayingCards() : List<PlayingCardsApiData> = dataSource.getPlayingCards().fold({
         it
     },{

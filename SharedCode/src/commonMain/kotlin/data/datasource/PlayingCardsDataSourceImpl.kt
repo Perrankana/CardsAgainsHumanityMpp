@@ -6,16 +6,9 @@ import com.pandiandcode.mpp.cardsagainsthumanity.data.api.CahApiImpl
 import com.pandiandcode.mpp.cardsagainsthumanity.data.api.apidata.NewPlayingCardsApiData
 import com.pandiandcode.mpp.cardsagainsthumanity.data.api.apidata.PlayingCardsApiData
 
-class PlayingCardsDataSourceImpl : PlayingCardsDataSource {
-    private var api: CahApi
-
-    constructor(api: CahApi) {
-        this.api = api
-    }
-
-    constructor() {
-        this.api = CahApiImpl()
-    }
+class PlayingCardsDataSourceImpl(
+    private val api: CahApi = CahApiImpl()
+) : PlayingCardsDataSource {
 
     override suspend fun getPlayingCards(): Result<List<PlayingCardsApiData>> =
         try {

@@ -5,21 +5,14 @@ import com.pandiandcode.mpp.cardsagainsthumanity.data.datasource.WhiteDeckDataSo
 import com.pandiandcode.mpp.cardsagainsthumanity.data.datasource.WhiteDeckDataSourceImpl
 
 
-class WhiteDeckRepository {
-    private var dataSource: WhiteDeckDataSource
+class WhiteDeckRepository(
+    private val dataSource: WhiteDeckDataSource = WhiteDeckDataSourceImpl()
+) {
 
-    constructor(api: WhiteDeckDataSource) {
-        this.dataSource = api
-    }
-
-    constructor(){
-        this.dataSource = WhiteDeckDataSourceImpl()
-    }
-
-    suspend fun get() : List<WhiteCardApiData> {
+    suspend fun get(): List<WhiteCardApiData> {
         return dataSource.get().fold({
             it
-        },{
+        }, {
             print(it)
             emptyList()
         })

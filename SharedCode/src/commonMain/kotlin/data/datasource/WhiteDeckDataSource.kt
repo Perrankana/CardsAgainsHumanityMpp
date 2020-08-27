@@ -9,19 +9,13 @@ interface WhiteDeckDataSource {
     suspend fun get(): Result<List<WhiteCardApiData>>
 }
 
-class WhiteDeckDataSourceImpl: WhiteDeckDataSource{
-    private var api: WhiteDeckApi
+class WhiteDeckDataSourceImpl(
+    private val api: WhiteDeckApi = WhiteDeckApiImpl()
+) : WhiteDeckDataSource {
 
-    constructor(api: WhiteDeckApi) {
-        this.api = api
-    }
-
-    constructor() {
-        api = WhiteDeckApiImpl()
-    }
     override suspend fun get(): Result<List<WhiteCardApiData>> = try {
         Result.Success(api.get())
-    }catch (e: Exception){
+    } catch (e: Exception) {
         Result.Failed(e)
     }
 
