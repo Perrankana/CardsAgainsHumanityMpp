@@ -1,8 +1,9 @@
 package sample
 
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Text
+import androidx.compose.ui.platform.setContent
 import com.pandiandcode.mpp.cardsagainsthumanity.presenter.MainGamePresenter
 import com.pandiandcode.mpp.cardsagainsthumanity.presenter.View
 
@@ -14,14 +15,14 @@ class MainActivity : AppCompatActivity(), View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
-
         presenterMain = MainGamePresenter()
         presenterMain.view = this
         presenterMain.start("Hola Juego", "Rocío")
     }
 
     override fun showState(json: String) {
-        findViewById<TextView>(R.id.main_text).text = json
+        setContent {
+            Text(json)
+        }
     }
 }
