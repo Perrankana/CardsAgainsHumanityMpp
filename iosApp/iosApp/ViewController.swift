@@ -1,7 +1,7 @@
 import UIKit
 import SharedCode
 
-class ViewController: UIViewController, View {
+class ViewController: UIViewController {
    
     
     override func viewDidLoad() {
@@ -11,10 +11,10 @@ class ViewController: UIViewController, View {
         label.textAlignment = .center
         label.font = label.font.withSize(25)
         
-        let presenter = MainGamePresenter()
-        presenter.view = self
-        
-        presenter.start(gameName: "Otra Ios", playerName: "Tom")
+//        let presenter = MainGamePresenter()
+//        presenter.view = self
+//        
+//        presenter.start(gameName: "Otra Ios", playerName: "Tom")
     }
 
     override func didReceiveMemoryWarning() {

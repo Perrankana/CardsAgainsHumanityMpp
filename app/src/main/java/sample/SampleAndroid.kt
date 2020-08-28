@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Text
 import androidx.compose.ui.platform.setContent
 import com.pandiandcode.mpp.cardsagainsthumanity.presenter.MainGamePresenter
-import com.pandiandcode.mpp.cardsagainsthumanity.presenter.View
+import com.pandiandcode.mpp.cardsagainsthumanity.presenter.MainGameView
 
 
-class MainActivity : AppCompatActivity(), View {
+class MainActivity : AppCompatActivity(), MainGameView {
 
     lateinit var presenterMain: MainGamePresenter
 
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), View {
         super.onCreate(savedInstanceState)
 
         presenterMain = MainGamePresenter()
-        presenterMain.view = this
+        presenterMain.mainGameView = this
         presenterMain.start("Hola Juego", "Rocío")
     }
 

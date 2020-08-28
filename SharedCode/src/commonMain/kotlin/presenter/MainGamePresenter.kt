@@ -10,7 +10,6 @@ import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoGetPlayingCar
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoGetWhiteDeck
 import com.pandiandcode.mpp.cardsagainsthumanity.domain.usecases.DoStartGame
 import kotlinx.coroutines.*
-import kotlin.coroutines.CoroutineContext
 
 class MainGamePresenter {
 
@@ -38,7 +37,7 @@ class MainGamePresenter {
         this.startGame = DoStartGame()
     }
 
-    var view: View? = null
+    var mainGameView: MainGameView? = null
 
     fun start(gameName: String, playerName: String) {
         GlobalScope.apply {
@@ -46,15 +45,15 @@ class MainGamePresenter {
                 withContext(Background){
                     startGame(gameName, playerName)
                 }.fold({
-                    view?.showState(it.toString())
+                    mainGameView?.showState(it.toString())
                 },{
-                    view?.showState(it.stackTraceToString())
+                    mainGameView?.showState(it.stackTraceToString())
                 })
             }
         }
     }
 }
 
-interface View {
+interface MainGameView {
     fun showState(json: String)
 }
